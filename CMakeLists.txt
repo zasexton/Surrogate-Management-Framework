@@ -38,8 +38,8 @@ PROJECT(SMF)
 #-----------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------
-SET(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Code")
-SET(CMAKE_EXTERNAL_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Externals")
+SET(CMAKE_CURRENT_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Code")
+#SET(CMAKE_EXTERNAL_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Externals")
 #-----------------------------------------------------------------------------
 
 include(ExternalProject)
@@ -48,10 +48,9 @@ include(ExternalProject)
 #-----------------------------------------------------------------------------
 ExternalProject_Add(Eigen
   URL "https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.zip"
-	DOWNLOAD_DIR "${CMAKE_EXTERNAL_PATH}/Eigen"
 	CONFIGURE_COMMAND ""
 	BUILD_COMMAND ""
 	INSTALL_COMMAND ""
 )
 
-ADD_EXECUTABLE(SMF main.cpp)
+ADD_EXECUTABLE(SMF ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
