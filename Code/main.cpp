@@ -2,6 +2,8 @@
 #include <iostream>
 
 int main() {
-  std::cout << "Nothing!" << std::endl;
+  Eigen::MatrixXd m = Eigen::MatrixXd::Random(3,3);
+  std::cout << m << std::endl;
+  std::cout << m.inverse() << std::endl;
   return 0;
 }
