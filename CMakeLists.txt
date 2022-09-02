@@ -29,7 +29,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #-----------------------------------------------------------------------------
-cmake_minimum_required(VERSION 3.10.0)
+cmake_minimum_required(VERSION 3.14.0)
 #-----------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------
@@ -42,20 +42,20 @@ SET(CMAKE_CURRENT_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Code")
 SET(CMAKE_CURRENT_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}")
 #-----------------------------------------------------------------------------
 
-include(ExternalProject)
+include(FetchContent)
 
 ## Build Projects ##
 #-----------------------------------------------------------------------------
-ExternalProject_Add(
+FetchContent_Declare(
   Eigen
-  PREFIX "Eigen"
   URL "https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.zip"
-  INSTALL_COMMAND ""
 )
 
-EXTERNALPROJECT_GET_PROPERTY(Eigen BINARY_DIR)
-MESSAGE("Build Directory of Eigen = ${BINARY_DIR}")
+FetchContent_MakeAvailable(Eigen)
+FetchContent_GetProperties(Eigen BINARY_DIR Eigen_BINARY_DIR)
 
-FIND_PACKAGE(Eigen3 REQUIRED PATHS ${BINARY_DIR})
+MESSAGE("Build Directory of Eigen = ${Eigen_BINARY_DIR}")
+FIND_PACKAGE(Eigen3 REQUIRED PATHS ${Eigen_BINARY_DIR})
+
 ADD_EXECUTABLE(SMF ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
 TARGET_LINK_LIBRARIES(SMF Eigen3::Eigen)
