@@ -1,5 +1,4 @@
 #include "chol.h"
-#include <Eigen/Dense>
 
 /*
 Function to return the Cholesky Decomposition
