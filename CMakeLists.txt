@@ -39,18 +39,23 @@ PROJECT(SMF)
 
 #-----------------------------------------------------------------------------
 SET(CMAKE_CURRENT_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Code")
-#SET(CMAKE_EXTERNAL_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Externals")
+SET(CMAKE_CURRENT_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}")
 #-----------------------------------------------------------------------------
 
 include(ExternalProject)
 
 ## Build Projects ##
 #-----------------------------------------------------------------------------
-ExternalProject_Add(Eigen
+ExternalProject_Add(
+  Eigen
+  PREFIX "Eigen"
   URL "https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.zip"
-	CONFIGURE_COMMAND ""
-	BUILD_COMMAND ""
-	INSTALL_COMMAND ""
+  INSTALL_COMMAND ""
 )
 
+EXTERNALPROJECT_GET_PROPERTY(Eigen BINARY_DIR)
+MESSAGE("Build Directory of Eigen = ${BINARY_DIR}")
+
+FIND_PACKAGE(Eigen3 REQUIRED PATHS ${BINARY_DIR})
 ADD_EXECUTABLE(SMF ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
+TARGET_LINK_LIBRARIES(SMF Eigen3::Eigen)
