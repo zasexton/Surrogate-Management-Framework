@@ -58,9 +58,9 @@ FetchContent_GetProperties(Eigen BINARY_DIR Eigen_BINARY_DIR)
 FIND_PACKAGE(Eigen3 REQUIRED PATHS ${Eigen_BINARY_DIR})
 
 #ADD_EXECUTABLE(SMF ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
-SET(headers
-    "${CODE_HEADER_DIR}/chol.h"
-    "${CODE_HEADER_DIR}/read.h")
+#SET(headers
+#    "${CODE_HEADER_DIR}/chol.h"
+#    "${CODE_HEADER_DIR}/read.h")
 #    "${CODE_HEADER_DIR}/model.h"
 #    "${CODE_HEADER_DIR}/read.h"
 #    "${CODE_HEADER_DIR}/read_phase.h"
@@ -69,6 +69,7 @@ SET(headers
 SET(sources
     "${CODE_SOURCE_DIR}/chol.cpp"
     "${CODE_SOURCE_DIR}/read.cpp"
+    "${CODE_SOURCE_DIR}/IO_helper.cpp"
     "${CODE_SOURCE_DIR}/main.cpp")
 
 INCLUDE_DIRECTORIES(${CODE_HEADER_DIR})
