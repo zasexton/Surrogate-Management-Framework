@@ -69,6 +69,7 @@ FIND_PACKAGE(Eigen3 REQUIRED PATHS ${Eigen_BINARY_DIR})
 SET(sources
     "${CODE_SOURCE_DIR}/chol.cpp"
     "${CODE_SOURCE_DIR}/read.cpp"
+    "${CODE_SOURCE_DIR}/settings.cpp"
     "${CODE_SOURCE_DIR}/IO_helper.cpp"
     "${CODE_SOURCE_DIR}/main.cpp")
 

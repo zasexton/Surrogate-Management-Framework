@@ -2,6 +2,9 @@
 /*
 Function for reading in a file
 to a string output.
+
+@author: Zachary Sexton
+@date:   9-1-22
 */
 std::string read(const char* filename) {
   std::ifstream file;

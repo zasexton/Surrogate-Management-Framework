@@ -1,4 +1,7 @@
+#pragma once
 #include <Eigen/Dense>
+#include <string>
+#include <iostream>
 
 struct settings {
 
@@ -55,4 +58,8 @@ struct settings {
     Eigen::VectorXi successful_pts_id ;
     Eigen::VectorXd successful_delta ;
 
-}
+};
+
+int getPhaseFromString(std::string fileContent);
+
+std::string getLine(std::string fileContent, int pos);
