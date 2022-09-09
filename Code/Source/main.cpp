@@ -1,8 +1,8 @@
 //#include <Eigen/Dense>
 #include <iostream>
 #include <string>
-#include "settings.h"
-//#include "read.h"
+//#include "settings.h"
+#include "read.h"
 //#include "IO_helper.h"
 
 int main() {
@@ -16,7 +16,8 @@ int main() {
   //std::cout << " " <<std::endl;
   //std::cout << A << std::endl;
   std::string fileContent="\nSTART\nother information\n";
-  int num = getPhaseFromString(fileContent);
-  std::cout << "Phase found from String is: " << num << std::endl;
+  //int num = getPhaseFromString(fileContent);
+  std::string data = getLine(fileContent,"START");
+  std::cout << data << std::endl;
   return 0;
 }

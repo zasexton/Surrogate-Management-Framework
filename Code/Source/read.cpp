@@ -6,6 +6,27 @@ to a string output.
 @author: Zachary Sexton
 @date:   9-1-22
 */
+
+
+/*
+
+ Function for reading a file into a
+ text string.
+
+ Parameters
+ ----------
+
+          filename : const char
+                    The path to a file.
+
+ Returns
+ -------
+
+          fileContent : string
+                    The file contents represented
+                    as one string object.
+
+*/
 std::string read(const char* filename) {
   std::ifstream file;
   file.open(filename);
@@ -14,3 +35,47 @@ std::string read(const char* filename) {
   std::string fileContent = fileBuffer.str();
   return fileContent;
 }
+
+/*
+
+ Function for getting the line of data/parameter values
+ following the specified search term that is given. New
+ lines are delimited by the new line indication "\n"
+
+ Parameters
+ ----------
+           fileContent : std::string
+                         This is a string representation of
+                         a parameter file that has been read.
+
+           searchTerm  : std::string
+                         This is the search term that will be
+                         queried.
+
+  Returns
+  -------
+           dataLine : std::string
+                      A string containing the line which follows
+                      the given search string. This string has
+                      not been cleaned/sanitized and will be exactly
+                      as it is in the original parameter file.
+                      If the searchTerm could not be found or
+                      no line follows the given searchTerm then
+                      the dataLine will return an empty string.
+
+*/
+
+std::string getLine(std::string fileContent, std::string searchTerm)
+{
+  size_t searchTermStart = fileContent.find(searchTerm);
+  std::string dataLine;
+  if (searchTermStart != std::string::npos)
+  {
+    size_t endSearchTerm = fileContent.find("\n",searchTermStart);
+    size_t startDataLine = endSearchTerm + 1;
+    size_t endDataLine   = fileContent.find("\n",startDataLine) - 1;
+    dataLine             = fileContent.substr(startDataLine,endDataLine);
+  }
+  return dataLine;
+}
+

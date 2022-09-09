@@ -62,4 +62,3 @@ struct settings {
 
 int getPhaseFromString(std::string fileContent);
 
-std::string getLine(std::string fileContent, std::string searchTerm);
