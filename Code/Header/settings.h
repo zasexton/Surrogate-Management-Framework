@@ -2,6 +2,7 @@
 #include <Eigen/Dense>
 #include <string>
 #include <iostream>
+#include "read.h"
 
 struct settings {
 
@@ -62,3 +63,4 @@ struct settings {
 
 int getPhaseFromString(std::string fileContent);
 
+settings createSettingsFromFile(const char* filename);

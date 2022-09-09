@@ -79,3 +79,82 @@ std::string getLine(std::string fileContent, std::string searchTerm)
   return dataLine;
 }
 
+/*
+
+ Function that takes a string of numeric
+ data seperated by spaces and returns a
+ vector object of numeric double elements.
+
+ Parameters
+ ----------
+
+           dataString : string
+                      string containing numeric data.
+                      This string should be clean i.e.
+                      there should be no characters
+                      other than numbers, periods, and
+                      spaces. The string should also
+                      not begin or end with a space
+                      character.
+
+ Returns
+ -------
+
+           data : std::vector<double>
+                      vector of double elements
+
+*/
+
+std::vector<double> read2Double(std::string dataString)
+{
+  std::stringstream dataStream(dataString);
+  std::vector<double> data;
+  double element;
+
+  while (dataStream >> element)
+  {
+    data.push_back(element);
+  }
+  return data;
+}
+
+/*
+
+ Function that takes a string of numeric
+ data seperated by spaces and returns a
+ vector object of numeric integer elements.
+
+ Parameters
+ ----------
+
+           dataString : string
+                      string containing numeric data.
+                      This string should be clean i.e.
+                      there should be no characters
+                      other than numbers, periods, and
+                      spaces. The string should also
+                      not begin or end with a space
+                      character.
+
+ Returns
+ -------
+
+           data : std::vector<int>
+                      vector of integer elements
+
+*/
+
+
+std::vector<int> read2Integer(std::string dataString)
+{
+  std::stringstream dataStream(dataString);
+  std::vector<int> data;
+  int element;
+
+  while (dataStream >> element)
+  {
+    data.push_back(element);
+  }
+  return data;
+}
+
