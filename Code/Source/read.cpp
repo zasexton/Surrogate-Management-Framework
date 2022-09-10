@@ -158,3 +158,43 @@ std::vector<int> read2Integer(std::string dataString)
   return data;
 }
 
+/*
+
+  Function to get a specific line from
+  a string containing an entire file.
+
+  Paramters
+  ---------
+
+           fileContent : std::string
+                       A string containing
+                       file contents seperated
+                       by newlines.
+
+           lineNumber  : int
+                       The integer of the line
+                       from the file to return.
+                       Line indexing begins at
+                       zero.
+
+  Returns
+  -------
+
+           line        : std::string
+                       String containing the file
+                       information of the specified
+                       line number.
+
+*/
+
+std::string getLineByNumber(std::string fileContent, int lineNumber)
+{
+  // Count the number of Lines in the fileContent string
+  // This is used to check if the lineNumber argument
+  // is within bounds.
+  int lineCount = std::count(fileContent.begin(),fileContent.end(),'\n') + 1;
+  if (lineNumber <= lineCount)
+  {
+    
+  }
+}
