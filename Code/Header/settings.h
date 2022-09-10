@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include "read.h"
+#include <vector>
 
 struct settings {
 

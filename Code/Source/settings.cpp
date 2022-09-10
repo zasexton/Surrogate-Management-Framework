@@ -54,7 +54,7 @@ Eigen::VectorXd vector2EigenDouble(std::vector<double> dataVector)
 }
 
 
-Eigen::VectorXi vector2EigenDouble(std::vector<int> dataVector)
+Eigen::VectorXi vector2EigenInteger(std::vector<int> dataVector)
 {
   Eigen::VectorXi dataEigen = Eigen::Map<Eigen::VectorXi,Eigen::Unaligned>(dataVector.data(),dataVector.size());
   return dataEigen;
@@ -103,7 +103,8 @@ settings createSettingsFromFile(const char* filename)
   if (dataLine.size() > 0)
   {
     std::vector<int> spacing       = read2Integer(dataLine);
-    settingsObject.spc             = spacing[0];
+    Eigen::VectorXi spacingEigen   = vector2EigenInteger(spacing);
+    settingsObject.spc             = spacingEigen;
   }
 
   dataLine  = getLine(fileContent,"Number of lhs points");
@@ -137,15 +138,15 @@ settings createSettingsFromFile(const char* filename)
   dataLine  = getLine(fileContent,"Number of search stages");
   if (dataLine.size() > 0)
   {
-    std:vector<int> numberSearchStages       = read2Integer(dataLine);
-    settingsObject.nstage_search             = numberSearchStages[0];
+    std::vector<int> numberSearchStages       = read2Integer(dataLine);
+    settingsObject.nstage_search              = numberSearchStages[0];
   }
 
   dataLine  = getLine(fileContent,"Number of feasible poll stages");
   if (dataLine.size() > 0)
   {
     std::vector<int> numberFeasiblePollStages = read2Integer(dataLine);
-    settingsObject.nstage_feas                = numberFeasiblePollStages[0];
+    settingsObject.nstage_pollfeas             = numberFeasiblePollStages[0];
   }
 
   dataLine  = getLine(fileContent,"Number of infeasible poll stages");
@@ -179,7 +180,7 @@ settings createSettingsFromFile(const char* filename)
   dataLine  = getLine(fileContent,"Initial hyper-parameter values");
   if (dataLine.size() > 0)
   {
-    std::vector<int> hyperparameterValues      = read2Double(dataLine);
+    std::vector<double> hyperparameterValues      = read2Double(dataLine);
     Eigen::VectorXd hyperparameterValuesEigen  = vector2EigenDouble(hyperparameterValues);
     settingsObject.hyper_parameters            = hyperparameterValuesEigen;
   }
@@ -187,7 +188,7 @@ settings createSettingsFromFile(const char* filename)
   dataLine  = getLine(fileContent,"Initial hyper-parameter lower bound");
   if (dataLine.size() > 0)
   {
-    std::vector<int> hyperparameterLowerBound          = read2Double(dataLine);
+    std::vector<double> hyperparameterLowerBound          = read2Double(dataLine);
     Eigen::VectorXd hyperparameterLowerBoundEigen      = vector2EigenDouble(hyperparameterLowerBound);
     settingsObject.thlow                               = hyperparameterLowerBoundEigen;
   }
@@ -195,7 +196,7 @@ settings createSettingsFromFile(const char* filename)
   dataLine  = getLine(fileContent,"Initial hyper-parameter upper bound");
   if (dataLine.size() > 0)
   {
-    std::vector<int> hyperparameterUpperBound          = read2Double(dataLine);
+    std::vector<double> hyperparameterUpperBound          = read2Double(dataLine);
     Eigen::VectorXd hyperparameterUpperBoundEigen      = vector2EigenDouble(hyperparameterUpperBound);
     settingsObject.thupp                               = hyperparameterUpperBoundEigen;
   }
@@ -212,7 +213,7 @@ settings createSettingsFromFile(const char* filename)
   if (dataLine.size() > 0)
   {
     std::vector<double> successfulDelta                = read2Double(dataLine);
-    Eigen::VectorXi successfulDeltaEigen               = vector2EigenDouble(successfulPtIds);
+    Eigen::VectorXd successfulDeltaEigen               = vector2EigenDouble(successfulDelta);
     settingsObject.successful_delta                    = successfulDeltaEigen;
   }
 
