@@ -12,4 +12,4 @@ std::vector<double> read2Double(std::string dataLine);
 
 std::vector<int> read2Integer(std::string dataLine);
 
-std::string getLineByNumber(std::string fileContent, int lineNumber);
+//std::string getLineByNumber(std::string fileContent, int lineNumber);

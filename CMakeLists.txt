@@ -51,27 +51,39 @@ FetchContent_Declare(
   URL "https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.zip"
 )
 
+FetchContent_Declare(
+  Python
+  URL ""
+)
+
 FetchContent_MakeAvailable(Eigen)
 FetchContent_GetProperties(Eigen BINARY_DIR Eigen_BINARY_DIR)
 
-#MESSAGE("Build Directory of Eigen = ${Eigen_BINARY_DIR}")
-FIND_PACKAGE(Eigen3 REQUIRED PATHS ${Eigen_BINARY_DIR})
+EXECUTE_PROCESS(COMMAND wget "https://www.python.org/ftp/python/3.10.7/Python-3.10.7.tgz" --directory-prefix=${FETCHCONTENT_BASE_DIR}/download)
+EXECUTE_PROCESS(COMMAND tar -zxvf ${FETCHCONTENT_BASE_DIR}/download/Python-3.10.7.tgz -C ${FETCHCONTENT_BASE_DIR})
+EXECUTE_PROCESS(COMMAND mkdir ${FETCHCONTENT_BASE_DIR}/localpython)
+SET(configure_command bash ${FETCHCONTENT_BASE_DIR}/Python-3.10.7/configure --prefix=${FETCHCONTENT_BASE_DIR}/localpython --with-ensurepip=install)
+EXECUTE_PROCESS(WORKING_DIRECTORY ${FETCHCONTENT_BASE_DIR}/Python-3.10.7 COMMAND ${configure_command})
 
-#ADD_EXECUTABLE(SMF ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
-#SET(headers
-#    "${CODE_HEADER_DIR}/chol.h"
-#    "${CODE_HEADER_DIR}/read.h")
-#    "${CODE_HEADER_DIR}/model.h"
-#    "${CODE_HEADER_DIR}/read.h"
-#    "${CODE_HEADER_DIR}/read_phase.h"
-#    "${CODE_HEADER_DIR}/setting.h")
+
+#FetchContent_MakeAvailable(Python)
+#FetchContent_GetProperties(Python SOURCE_DIR Python_SOURCE_DIR)
+
+#MESSAGE("SubBuild Directory of Python = ${FETCHCONTENT_BASE_DIR}/python-subbuild")
+FIND_PACKAGE(Eigen3 REQUIRED PATHS ${Eigen_BINARY_DIR})
+FIND_PACKAGE(PythonLibs REQUIRED PATHS ${FETCHCONTENT_BASE_DIR}/python-subbuild)
+
+#FIND_PACKAGE(PythonLibs REQUIRED)
+INCLUDE_DIRECTORIES(${PYTHON_INCLUDE_DIRS})
 
 SET(sources
     "${CODE_SOURCE_DIR}/chol.cpp"
     "${CODE_SOURCE_DIR}/read.cpp"
     "${CODE_SOURCE_DIR}/settings.cpp"
     "${CODE_SOURCE_DIR}/IO_helper.cpp"
-    "${CODE_SOURCE_DIR}/main.cpp")
+    "${CODE_SOURCE_DIR}/main.cpp"
+    "${CODE_SOURCE_DIR}/utils.cpp"
+    "${CODE_SOURCE_DIR}/lhs.cpp")
 
 INCLUDE_DIRECTORIES(${CODE_HEADER_DIR})
 ADD_EXECUTABLE(SMF ${sources})

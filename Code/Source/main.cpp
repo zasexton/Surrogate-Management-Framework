@@ -1,10 +1,12 @@
 //#include <Eigen/Dense>
 #include <iostream>
-#include <string>
-#include <vector>
+//#include <string>
+//#include <vector>
 #include "settings.h"
 //#include "read.h"
 //#include "IO_helper.h"
+#include "lhs.h"
+
 
 int main() {
   //Eigen::MatrixXd m = Eigen::MatrixXd::Random(3,3);
@@ -20,8 +22,9 @@ int main() {
   //int num = getPhaseFromString(fileContent);
   //std::string dataString = getLine(fileContent,"Dimension");
   //std::vector<int> data = read2Integer(dataString);
-  settings data = createSettingsFromFile("test.txt");
-  std::cout << data.xupp << std::endl;
-  std::cout << data.xlow << std::endl;
+  //settings data = createSettingsFromFile("test.txt");
+  //std::cout << data.xupp << std::endl;
+  //std::cout << data.xlow << std::endl;
+  lhs();
   return 0;
 }

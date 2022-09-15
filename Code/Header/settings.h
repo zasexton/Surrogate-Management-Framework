@@ -2,8 +2,10 @@
 #include <Eigen/Dense>
 #include <string>
 #include <iostream>
-#include "read.h"
 #include <vector>
+
+#include "read.h"
+#include "utils.h"
 
 struct settings {
 

@@ -187,14 +187,14 @@ std::vector<int> read2Integer(std::string dataString)
 
 */
 
-std::string getLineByNumber(std::string fileContent, int lineNumber)
-{
+//std::string getLineByNumber(std::string fileContent, int lineNumber)
+//{
   // Count the number of Lines in the fileContent string
   // This is used to check if the lineNumber argument
   // is within bounds.
-  int lineCount = std::count(fileContent.begin(),fileContent.end(),'\n') + 1;
-  if (lineNumber <= lineCount)
-  {
-    
-  }
-}
+//  int lineCount = std::count(fileContent.begin(),fileContent.end(),'\n') + 1;
+//  if (lineNumber <= lineCount)
+//  {
+//    TODO
+//  }
+//}
